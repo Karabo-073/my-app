@@ -46,7 +46,7 @@ const stats: Stat[] = [
   { value: "#28", label: "TryHackMe South Africa" },
   { value: "100+", label: "CTFs Completed" },
   { value: "13", label: "Professional Reports" },
-  { value: "7", label: "7 reports validated on bugCrowd'},
+  { value: "7", label: "7 reports validated on Bugcrowd" },
 ];
 
 const skills = [
