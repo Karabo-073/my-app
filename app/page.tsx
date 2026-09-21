@@ -543,6 +543,14 @@ export default function Home() {
                 </article>
               ))}
             </div>
+            <a
+              href="https://github.com/Karabo-073/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex rounded-lg border border-white/10 px-4 py-3 text-xs text-slate-300 transition hover:border-red-500/30 hover:text-red-400"
+            >
+              Explore All Projects <ExternalLinkIcon />
+            </a>
           </section>
 
           <section id="articles">
