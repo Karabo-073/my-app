@@ -46,6 +46,7 @@ const stats: Stat[] = [
   { value: "#28", label: "TryHackMe South Africa" },
   { value: "100+", label: "CTFs Completed" },
   { value: "13", label: "Professional Reports" },
+  { value: "7", label: "7 reports validated on bugCrowd'},
 ];
 
 const skills = [
@@ -84,16 +85,16 @@ const projects: Project[] = [
     description:
       "A lightweight intrusion detection system built with C++ and libpcap to identify suspicious network activity, including port scans, ICMP floods, and suspicious HTTP payload patterns.",
     tags: ["C++", "libpcap", "IDS", "Network Monitoring"],
-    link: "https://github.com/Karabo-073/",
+    link: "https://github.com/Karabo-073/Neurolock_IDS",
   },
   {
     number: "02",
-    title: "OWASP crAPI Security Research",
-    category: "API SECURITY · OWASP",
+    title: "Phishing attack",
+    category: "Social Engineering",
     description:
-      "A local API-security testing environment used to study common API vulnerabilities, access-control weaknesses, and insecure application logic.",
-    tags: ["API Security", "OWASP crAPI", "Burp Suite"],
-    link: "https://github.com/Karabo-073/",
+      "A stimulated phishing campaign  was conducted on an user who works on local comapany to manipulate employee into revealing sensitive information on the company. ",
+    tags: ["Security", "Social engineering"],
+    link: "https://github.com/Karabo-073/Phishing-Attack",
   },
   {
     number: "03",
@@ -102,7 +103,7 @@ const projects: Project[] = [
     description:
       "Hands-on vulnerability research covering SQL injection, IDOR, broken access control, SSRF, HTTP request smuggling, path traversal, and related attack paths.",
     tags: ["Bug Bounty", "Web Pentesting", "Research"],
-    link: "https://github.com/Karabo-073/",
+    link: "https://github.com/Karabo-073/CTF-Reports",
   },
 ];
 
@@ -120,14 +121,14 @@ const articles: Article[] = [
     description:
       "A security-research breakdown of an AI-related incident and its security implications.",
     label: "AI SECURITY",
-    link: "https://medium.com/@molapomanuel709",
+    link: "https://medium.com/@molapomanuel709/when-ai-agents-turned-an-internal-package-service-into-a-bridge-to-hugging-face-073f576bbd4f",
   },
   {
     title: "Agentic Bug Hunter",
     description:
       "A practical guide exploring AI agents and their potential role in bug bounty hunting.",
     label: "AI BUG HUNTING",
-    link: "https://medium.com/@molapomanuel709",
+    link: "https://medium.com/@molapomanuel709/agentic-bug-hunter-0dc6f644c48b",
   },
 ];
 
