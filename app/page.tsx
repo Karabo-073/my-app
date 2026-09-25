@@ -34,6 +34,14 @@ type Article = {
   label: string;
 };
 
+type Book = {
+  status: string;
+  title: string;
+  description: string;
+  tags: string[];
+  note?: string;
+};
+
 const profile = {
   name: "Manuel Molapo",
   role: "Cybersecurity Researcher | Bug Bounty Hunter",
@@ -43,10 +51,12 @@ const profile = {
 
 const stats: Stat[] = [
   { value: "Top 1%", label: "TryHackMe Global" },
-  { value: "#28", label: "TryHackMe South Africa" },
+  { value: "#10", label: "TryHackMe South Africa" },
   { value: "100+", label: "CTFs Completed" },
   { value: "13", label: "Professional Reports" },
   { value: "7", label: "7 reports validated on Bugcrowd" },
+  { value: "10", label: "Articles Published" },
+  { value: "2", label: "Books In Development" },
 ];
 
 const skills = [
@@ -109,6 +119,20 @@ const projects: Project[] = [
 
 const articles: Article[] = [
   {
+    title: "How attackers gain remote access using AndroRAT",
+    description:
+      "An educational breakdown of AndroRAT and how it can be abused to gain remote access to Android devices, demonstrated in controlled testing environments.",
+    label: "ANDROID SECURITY",
+    link: "https://medium.com/@molapomanuel709/how-attackers-gain-remote-access-using-androrat-a9221e00c85e",
+  },
+  {
+    title: "How Hackers could spy on you using Camphish",
+    description:
+      "A look at Camphish, a technique used to capture webcam images through a spoofed permission prompt, explored here for defensive awareness.",
+    label: "SOCIAL ENGINEERING",
+    link: "https://medium.com/@molapomanuel709/how-hackers-could-spy-on-you-using-camphish-e377ba315597",
+  },
+  {
     title: "How attackers could compromise any Android phone",
     description:
       "An educational security research article exploring Android compromise techniques and mobile security risks.",
@@ -132,6 +156,24 @@ const articles: Article[] = [
   },
 ];
 
+const books: Book[] = [
+  {
+    status: "IN DEVELOPMENT",
+    title: "Android Security & Attack Research",
+    description:
+      "An educational cybersecurity book in development, exploring Android security, social engineering, malware threats, and mobile-device compromise from a security research perspective.",
+    tags: ["Android Security", "Mobile Threats", "Ethical Hacking"],
+    note: "Planned paid access: $2 subscription. Purchase is not enabled yet.",
+  },
+  {
+    status: "IN DEVELOPMENT",
+    title: "Title TBA",
+    description:
+      "A security research book currently in development. Full title and further details to be announced.",
+    tags: ["Security Research"],
+  },
+];
+
 const socials = [
   {
     label: "LinkedIn",
@@ -140,7 +182,7 @@ const socials = [
   { label: "GitHub", href: "https://github.com/Karabo-073/" },
   {
     label: "TryHackMe",
-    href: "https://tryhackme.com/p/molapomanuel709",
+    href: "https://tryhackme.com/p/VantaRoot",
   },
   { label: "Medium", href: "https://medium.com/@molapomanuel709" },
 ];
@@ -330,7 +372,7 @@ export default function Home() {
                 aria-hidden="true"
                 className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-red-500"
               />
-              Open to cybersecurity opportunities
+              Bug Hunter
             </div>
 
             <SocialLinks compact />
@@ -346,7 +388,7 @@ export default function Home() {
                 ["Research", "#research"],
                 ["Projects", "#projects"],
                 ["Articles", "#articles"],
-                ["Premium Book", "#book"],
+                ["Book", "#book"],
                 ["Contact", "#contact"],
               ].map(([label, href]) => (
                 <a
@@ -615,79 +657,77 @@ export default function Home() {
           </section>
 
           <section id="book">
-            <SectionHeading number="06" title="Upcoming Book" />
-            <div className="relative overflow-hidden rounded-2xl border border-red-500/20 bg-black/80 p-6 sm:p-8">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-red-500/[0.06] blur-3xl"
-              />
-              <div className="relative grid gap-7 md:grid-cols-[minmax(0,1fr)_190px] md:items-center">
-                <div>
-                  <span className="rounded-full border border-red-500/20 bg-red-500/[0.06] px-3 py-1.5 font-mono text-[10px] tracking-wider text-red-400">
-                    IN DEVELOPMENT
-                  </span>
-                  <h3 className="mt-5 text-2xl font-bold leading-tight text-white">
-                    Android Security & Attack Research
-                  </h3>
-                  <p className="mt-4 text-sm leading-7 text-slate-400">
-                    An educational cybersecurity book in development,
-                    exploring Android security, social engineering, malware
-                    threats, and mobile-device compromise from a security
-                    research perspective.
-                  </p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {[
-                      "Android Security",
-                      "Mobile Threats",
-                      "Ethical Hacking",
-                    ].map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-md border border-white/[0.08] px-2 py-1 font-mono text-[10px] text-slate-500"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="mt-5 text-xs text-slate-500">
-                    Planned paid access: $2 subscription. Purchase is not
-                    enabled yet.
-                  </p>
-                  <a
-                    href="https://medium.com/@molapomanuel709"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex rounded-lg border border-red-500/30 bg-red-500/10 px-5 py-3 text-xs font-semibold text-red-400 transition hover:bg-red-500/20"
-                  >
-                    View Author Profile <ExternalLinkIcon />
-                  </a>
-                </div>
+            <SectionHeading number="06" title="Book" />
+            <div className="space-y-6">
+              {books.map((book) => (
                 <div
-                  aria-label="Android Security book cover preview"
-                  className="mx-auto flex h-56 w-40 flex-col justify-between border border-red-500/20 bg-gradient-to-br from-[#2a0a0a] via-black to-black p-4 shadow-2xl shadow-black/50"
+                  key={book.title}
+                  className="relative overflow-hidden rounded-2xl border border-red-500/20 bg-black/80 p-6 sm:p-8"
                 >
-                  <div>
-                    <p className="font-mono text-[8px] tracking-[0.2em] text-red-500">
-                      MOBILE SECURITY
-                    </p>
-                    <div className="mt-3 h-px bg-red-500/30" />
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-red-500/[0.06] blur-3xl"
+                  />
+                  <div className="relative grid gap-7 md:grid-cols-[minmax(0,1fr)_190px] md:items-center">
+                    <div>
+                      <span className="rounded-full border border-red-500/20 bg-red-500/[0.06] px-3 py-1.5 font-mono text-[10px] tracking-wider text-red-400">
+                        {book.status}
+                      </span>
+                      <h3 className="mt-5 text-2xl font-bold leading-tight text-white">
+                        {book.title}
+                      </h3>
+                      <p className="mt-4 text-sm leading-7 text-slate-400">
+                        {book.description}
+                      </p>
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {book.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-md border border-white/[0.08] px-2 py-1 font-mono text-[10px] text-slate-500"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      {book.note && (
+                        <p className="mt-5 text-xs text-slate-500">
+                          {book.note}
+                        </p>
+                      )}
+                      <a
+                        href="https://medium.com/@molapomanuel709"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-5 inline-flex rounded-lg border border-red-500/30 bg-red-500/10 px-5 py-3 text-xs font-semibold text-red-400 transition hover:bg-red-500/20"
+                      >
+                        View Book <ExternalLinkIcon />
+                      </a>
+                    </div>
+                    <div
+                      aria-label={`${book.title} cover preview`}
+                      className="mx-auto flex h-56 w-40 flex-col justify-between border border-red-500/20 bg-gradient-to-br from-[#2a0a0a] via-black to-black p-4 shadow-2xl shadow-black/50"
+                    >
+                      <div>
+                        <p className="font-mono text-[8px] tracking-[0.2em] text-red-500">
+                          {book.tags[0] ?? "SECURITY RESEARCH"}
+                        </p>
+                        <div className="mt-3 h-px bg-red-500/30" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-black leading-tight text-white">
+                          {book.title}
+                        </p>
+                        <p className="mt-2 font-mono text-[8px] leading-4 text-slate-500">
+                          {book.status}
+                        </p>
+                      </div>
+                      <p className="font-mono text-[8px] tracking-wider text-red-500">
+                        MANUEL MOLAPO
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-lg font-black leading-tight text-white">
-                      ANDROID
-                      <br />
-                      SECURITY
-                    </p>
-                    <p className="mt-2 font-mono text-[8px] leading-4 text-slate-500">
-                      ATTACK RESEARCH
-                      <br />& DEFENSE
-                    </p>
-                  </div>
-                  <p className="font-mono text-[8px] tracking-wider text-red-500">
-                    MANUEL MOLAPO
-                  </p>
                 </div>
-              </div>
+              ))}
             </div>
           </section>
 
