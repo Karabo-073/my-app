@@ -40,6 +40,7 @@ type Book = {
   description: string;
   tags: string[];
   note?: string;
+  link?: string;
 };
 
 const profile = {
@@ -51,10 +52,10 @@ const profile = {
 
 const stats: Stat[] = [
   { value: "Top 1%", label: "TryHackMe Global" },
-  { value: "#10", label: "TryHackMe South Africa" },
+  { value: "#15", label: "TryHackMe South Africa" },
   { value: "100+", label: "CTFs Completed" },
   { value: "13", label: "Professional Reports" },
-  { value: "7", label: "7 reports validated on Bugcrowd" },
+  { value: "7", label: "7 reports validated on Bugcrowd, HackerOne & YesWeHack" },
   { value: "10", label: "Articles Published" },
   { value: "2", label: "Books In Development" },
 ];
@@ -158,19 +159,21 @@ const articles: Article[] = [
 
 const books: Book[] = [
   {
-    status: "IN DEVELOPMENT",
+    status: "OUT NOW",
     title: "Android Security & Attack Research",
     description:
-      "An educational cybersecurity book in development, exploring Android security, social engineering, malware threats, and mobile-device compromise from a security research perspective.",
+      "A cybersecurity book exploring Android security, social engineering, malware threats, and mobile-device compromise from a security research perspective.",
     tags: ["Android Security", "Mobile Threats", "Ethical Hacking"],
-    note: "Planned paid access: $2 subscription. Purchase is not enabled yet.",
+    note: "Subscription: $5.",
+    link: "https://molapo5.gumroad.com/l/snyvoo",
   },
   {
     status: "IN DEVELOPMENT",
-    title: "Title TBA",
+    title: "Binary Exploitation and Cryptography",
     description:
-      "A security research book currently in development. Full title and further details to be announced.",
+      "A security research book currently in development, exploring binary exploitation and cryptography.",
     tags: ["Security Research"],
+    note: "Subscription: $5.",
   },
 ];
 
@@ -694,14 +697,24 @@ export default function Home() {
                           {book.note}
                         </p>
                       )}
-                      <a
-                        href="https://medium.com/@molapomanuel709"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-5 inline-flex rounded-lg border border-red-500/30 bg-red-500/10 px-5 py-3 text-xs font-semibold text-red-400 transition hover:bg-red-500/20"
-                      >
-                        View Book <ExternalLinkIcon />
-                      </a>
+                      {book.link ? (
+                        <a
+                          href={book.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-5 inline-flex rounded-lg border border-red-500/30 bg-red-500/10 px-5 py-3 text-xs font-semibold text-red-400 transition hover:bg-red-500/20"
+                        >
+                          View Book <ExternalLinkIcon />
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          disabled
+                          className="mt-5 inline-flex cursor-not-allowed rounded-lg border border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold text-slate-500"
+                        >
+                          Coming Soon
+                        </button>
+                      )}
                     </div>
                     <div
                       aria-label={`${book.title} cover preview`}
