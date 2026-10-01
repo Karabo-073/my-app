@@ -7,7 +7,7 @@ import { profile, socials } from "../data";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
+  { label: "Videos", href: "/videos" },
   { label: "Articles", href: "/articles" },
   { label: "Book", href: "/books" },
 ];

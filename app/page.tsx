@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Shell, { ExternalLinkIcon, SectionHeading } from "./components/Shell";
+import Shell, { ExternalLinkIcon, SectionHeading } from "./components/shell";
 import { introLines, profile, stats } from "./data";
 
 export default function Home() {
@@ -83,7 +83,7 @@ export default function Home() {
             Cybersecurity researcher and bug bounty hunter focused on discovering vulnerabilities, analyzing attack paths, and understanding how applications fail.
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
-            <Link href="/projects" className="rounded-lg bg-red-500 px-7 py-4 text-sm font-semibold text-black transition hover:bg-red-400">
+            <Link href="/videos" className="rounded-lg bg-red-500 px-7 py-4 text-sm font-semibold text-black transition hover:bg-red-400">
               Explore My Work →
             </Link>
             <a

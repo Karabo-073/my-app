@@ -1,4 +1,4 @@
-import Shell, { ExternalLinkIcon, SectionHeading } from "../components/Shell";
+import Shell, { ExternalLinkIcon, SectionHeading } from "../components/shell";
 import { articles } from "../data";
 
 export default function Articles() {

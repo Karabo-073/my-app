@@ -1,4 +1,4 @@
-import Shell, { SectionHeading } from "../components/Shell";
+import Shell, { SectionHeading } from "../components/shell";
 import { experience, profile, skills, tools } from "../data";
 
 export default function About() {
