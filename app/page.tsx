@@ -112,7 +112,7 @@ export default function Home() {
               <p className="mt-3 text-sm leading-6 text-slate-500">{s.label}</p>
             </div>
           ))}
-          <div className="rounded-xl border border-red-500/20 bg-black/80 p-6 sm:p-7">
+          <div className="col-span-2 rounded-xl border border-red-500/20 bg-black/80 p-6 sm:p-7 lg:col-span-4">
             <p className="font-mono text-xs uppercase tracking-widest text-slate-500">Current Focus</p>
             <p className="mt-3 text-lg font-medium text-white">Offensive Security</p>
             <p className="mt-2 text-sm leading-6 text-slate-500">

@@ -1,0 +1,27 @@
+/* Scoped to the Writeups page only (wr- prefix) */
+.wr-layer{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.wr-fill{position:absolute;inset:0}
+.wr-crt{background:repeating-linear-gradient(transparent 0 2px,rgba(0,0,0,.28) 2px 4px)}
+.wr-vignette{background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.8) 100%)}
+.wr-pulse{background:radial-gradient(circle at 50% 40%,rgba(239,68,68,.16),transparent 55%);animation:wr-pulse 5s ease-in-out infinite}
+.wr-sweep{position:absolute;left:0;right:0;top:0;height:180px;background:linear-gradient(transparent,rgba(52,211,153,.12),transparent);animation:wr-sweep 6s linear infinite}
+.wr-blink{animation:wr-blink 1s steps(2,start) infinite}
+.wr-type{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;width:0;border-right:2px solid #34d399;animation:wr-type 2.6s steps(24) .3s forwards,wr-caret .8s steps(2) infinite}
+.wr-bar{animation:wr-bar 2.2s ease-in-out infinite}
+.wr-shake{animation:wr-shake 7s steps(1) infinite}
+.wr-glitch{position:relative;display:inline-block}
+.wr-glitch::before,.wr-glitch::after{content:attr(data-text);position:absolute;inset:0;opacity:0}
+.wr-glitch::before{color:#22d3ee;animation:wr-g1 4s steps(1) infinite}
+.wr-glitch::after{color:#ef4444;animation:wr-g2 4s steps(1) infinite}
+.wr-card{transition:transform .3s,border-color .3s,box-shadow .3s}
+.wr-card:hover{transform:translateY(-5px);border-color:rgba(52,211,153,.5);box-shadow:0 0 30px rgba(52,211,153,.18)}
+@keyframes wr-pulse{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes wr-sweep{from{transform:translateY(-200px)}to{transform:translateY(110vh)}}
+@keyframes wr-blink{to{opacity:0}}
+@keyframes wr-caret{to{border-color:transparent}}
+@keyframes wr-type{to{width:24ch}}
+@keyframes wr-bar{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
+@keyframes wr-shake{0%,94%,100%{transform:none}95%{transform:translate(3px,-1px) skewX(-2deg)}97%{transform:translate(-3px,1px) skewX(2deg)}98%{transform:none}}
+@keyframes wr-g1{0%,90%,100%{opacity:0}91%{opacity:.85;transform:translate(-4px,1px);clip-path:inset(10% 0 60% 0)}94%{opacity:.85;transform:translate(4px,-1px);clip-path:inset(62% 0 8% 0)}96%{opacity:0}}
+@keyframes wr-g2{0%,92%,100%{opacity:0}93%{opacity:.85;transform:translate(4px,-1px);clip-path:inset(55% 0 15% 0)}95%{opacity:.85;transform:translate(-4px,1px);clip-path:inset(15% 0 55% 0)}97%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.wr-pulse,.wr-sweep,.wr-blink,.wr-type,.wr-bar,.wr-shake,.wr-glitch::before,.wr-glitch::after{animation:none!important}.wr-type{width:24ch}}

@@ -33,6 +33,14 @@ export const videos: VideoItem[] = [
       { label: "ENVIRONMENT", value: "TRYHACKME" },
     ],
   },
+  {
+    title: "How to Exploit SSTI",
+    description: "Offensive security walkthrough on exploiting Server-Side Template Injection (SSTI).",
+    category: "WEB SECURITY",
+    videoUrl: "", // ← paste the YouTube URL here once published
+    publishedAt: "", // ← add the date as YYYY-MM-DD when published
+    status: "COMING SOON",
+  },
   // Add the next video like this:
   // {
   //   title: "Your Video Title",
@@ -56,6 +64,7 @@ export function getThumbnail(v: VideoItem) {
 
 const MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 export function formatDate(d: string) {
+  if (!d) return "TBA";
   const [y, m, day] = d.split("-");
   return `${day} ${MONTHS[Number(m) - 1] ?? ""} ${y}`;
 }

@@ -13,7 +13,7 @@ export default function Articles() {
           {articles.map((a, i) => (
             <article key={a.title} className="flex flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-black/80 transition hover:border-red-500/25">
               <div className="relative flex h-44 items-end overflow-hidden bg-gradient-to-br from-[#2a0a0a] via-black to-black p-6">
-                <div aria-hidden="true" className="absolute right-4 top-3 font-mono text-6xl font-bold text-red-500/[0.07]">0{i + 1}</div>
+                <div aria-hidden="true" className="absolute right-4 top-3 font-mono text-6xl font-bold text-red-500/[0.07]">{String(i + 1).padStart(2, "0")}</div>
                 <div aria-hidden="true" className="absolute right-6 top-6 h-20 w-20 rounded-full border border-red-500/10" />
                 <div className="relative">
                   <p className="font-mono text-xs tracking-[0.2em] text-red-500">MEDIUM / RESEARCH</p>

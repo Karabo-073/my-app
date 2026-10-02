@@ -22,8 +22,9 @@ export const stats: Stat[] = [
   { value: "100+", label: "CTFs Completed" },
   { value: "13", label: "Professional Reports" },
   { value: "7", label: "7 reports validated on Bugcrowd, HackerOne & YesWeHack" },
-  { value: "10", label: "Articles Published" },
-  { value: "2", label: "Books In Development" },
+  { value: "20", label: "Articles Published" },
+  { value: "10", label: "YouTube Videos" },
+  { value: "3", label: "Books In Development" },
 ];
 
 export const skills = [
@@ -86,6 +87,30 @@ export const articles: Article[] = [
     label: "AI BUG HUNTING",
     link: "https://medium.com/@molapomanuel709/agentic-bug-hunter-0dc6f644c48b",
   },
+  {
+    title: "Password Reset Flows: Three Token Tests Every Bug Hunter Should Know",
+    description: "A bug bounty guide to testing password reset flows, built around three token tests every bug hunter should know.",
+    label: "BUG BOUNTY",
+    link: "https://medium.com/@molapomanuel709/password-reset-flows-three-token-tests-every-bug-hunter-should-know-89f21dcdabaf",
+  },
+  {
+    title: "How black-hat hackers spy on any android phones using Evil Droid",
+    description: "An educational look at how attackers abuse Evil Droid to spy on Android phones, written for defensive awareness.",
+    label: "ANDROID SECURITY",
+    link: "https://medium.com/@molapomanuel709/how-black-hat-hackers-spy-on-any-android-phones-using-evil-droid-7ca4d93aa564",
+  },
+  {
+    title: "Understanding CORS Misconfigurations: When Trusting the Browser Goes Wrong",
+    description: "An explanation of CORS misconfigurations and what goes wrong when a server trusts the browser too much.",
+    label: "WEB SECURITY",
+    link: "https://medium.com/@molapomanuel709/understanding-cors-misconfigurations-when-trusting-the-browser-goes-wrong-d6a15ada56b5",
+  },
+  {
+    title: "Many beginners forget Mass assignment in Bug Bounty programs",
+    description: "A look at mass assignment, a vulnerability many beginners overlook in bug bounty programs.",
+    label: "BUG BOUNTY",
+    link: "https://medium.com/@molapomanuel709/many-beginners-forget-mass-assignment-in-bug-bounty-programs-cc4c4441de4b",
+  },
 ];
 
 export const books: Book[] = [
@@ -99,6 +124,11 @@ export const books: Book[] = [
     status: "IN DEVELOPMENT", title: "Binary Exploitation and Cryptography",
     description: "A security research book currently in development, exploring binary exploitation and cryptography.",
     tags: ["Security Research"], note: "Subscription: $5.",
+  },
+  {
+    status: "IN DEVELOPMENT", title: "How to Become a Bug Hunter",
+    description: "A book currently in development on how to become a bug hunter, from the mindset to the methodology.",
+    tags: ["Bug Bounty", "Methodology"],
   },
 ];
 
