@@ -12,7 +12,9 @@ export default function VideoCard({ video }: { video: VideoItem }) {
         </div>
         <h3 className="text-xl font-semibold text-white transition group-hover:text-red-400">{video.title}</h3>
         <p className="mt-3 text-sm leading-7 text-slate-400">{video.description}</p>
-        <p className="mt-4 font-mono text-[11px] text-slate-600">PUBLISHED // {formatDate(video.publishedAt)}</p>
+        {video.publishedAt && (
+          <p className="mt-4 font-mono text-[11px] text-slate-600">PUBLISHED // {formatDate(video.publishedAt)}</p>
+        )}
         <div className="mt-auto pt-6">
           <ViewVideoButton url={video.videoUrl} />
         </div>

@@ -34,12 +34,36 @@ export const videos: VideoItem[] = [
     ],
   },
   {
+    title: "Path Traversal Vulnerability Explained | Web Security & File Access",
+    description: "Explains the path traversal vulnerability and how it can lead to unauthorized file access.",
+    category: "WEB SECURITY",
+    videoUrl: "https://www.youtube.com/watch?v=nG3cPGU29us",
+    publishedAt: "",
+    status: "LIVE",
+  },
+  {
     title: "How to Exploit SSTI",
     description: "Offensive security walkthrough on exploiting Server-Side Template Injection (SSTI).",
     category: "WEB SECURITY",
-    videoUrl: "", // ← paste the YouTube URL here once published
-    publishedAt: "", // ← add the date as YYYY-MM-DD when published
-    status: "COMING SOON",
+    videoUrl: "https://www.youtube.com/watch?v=bNrRUc9ZwGM",
+    publishedAt: "",
+    status: "LIVE",
+  },
+  {
+    title: "Bounty Hunter CTF",
+    description: "Offensive security walkthrough of the Bounty Hunter CTF.",
+    category: "CTF",
+    videoUrl: "https://www.youtube.com/watch?v=phBhkiUD-9I&t=5s",
+    publishedAt: "",
+    status: "LIVE",
+  },
+  {
+    title: "File Upload Leading to RCE",
+    description: "Offensive security walkthrough on how an insecure file upload can lead to remote code execution (RCE).",
+    category: "WEB SECURITY",
+    videoUrl: "https://www.youtube.com/watch?v=x0oRaLYiU_w",
+    publishedAt: "",
+    status: "LIVE",
   },
   // Add the next video like this:
   // {

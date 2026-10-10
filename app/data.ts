@@ -18,13 +18,16 @@ export const profile = {
 
 export const stats: Stat[] = [
   { value: "Top 1%", label: "TryHackMe Global" },
-  { value: "#15", label: "TryHackMe South Africa" },
+  { value: "#14", label: "TryHackMe South Africa" },
   { value: "100+", label: "CTFs Completed" },
   { value: "13", label: "Professional Reports" },
   { value: "7", label: "7 reports validated on Bugcrowd, HackerOne & YesWeHack" },
   { value: "20", label: "Articles Published" },
   { value: "10", label: "YouTube Videos" },
-  { value: "3", label: "Books In Development" },
+  { value: "5", label: "Bug Bounty Writeups" },
+  { value: "2", label: "TryHackMe Rooms Created" },
+  { value: "1", label: "CVE Pending" },
+  { value: "4", label: "Books In Development" },
 ];
 
 export const skills = [
@@ -111,6 +114,36 @@ export const articles: Article[] = [
     label: "BUG BOUNTY",
     link: "https://medium.com/@molapomanuel709/many-beginners-forget-mass-assignment-in-bug-bounty-programs-cc4c4441de4b",
   },
+  {
+    title: "Binary and Hexadecimal: The Numbers Behind Computers",
+    description: "An introduction to binary and hexadecimal, the number systems that computers use to represent data.",
+    label: "FUNDAMENTALS",
+    link: "https://medium.com/@molapomanuel709/binary-and-hexadecimal-the-numbers-behind-computers-9ac30fc83462",
+  },
+  {
+    title: "From Numbers to Cryptography: Understanding How Data Becomes Crypto",
+    description: "A beginner-friendly look at how numbers and data are turned into cryptography.",
+    label: "CRYPTOGRAPHY",
+    link: "https://medium.com/@molapomanuel709/from-numbers-to-cryptography-understanding-how-data-becomes-crypto-17959bc00134",
+  },
+  {
+    title: "Understanding Memory, the Stack, the Heap, and Registers",
+    description: "An explanation of memory, the stack, the heap, and registers, the foundations of binary exploitation.",
+    label: "BINARY EXPLOITATION",
+    link: "https://medium.com/@molapomanuel709/understanding-memory-the-stack-the-heap-and-registers-1c8b2812dd84",
+  },
+  {
+    title: "Binary Exploitation: A Practical Guide to Memory, Buffers, and Control Flow",
+    description: "A practical guide to binary exploitation, covering memory, buffers, and control flow.",
+    label: "BINARY EXPLOITATION",
+    link: "https://medium.com/@molapomanuel709/binary-exploitation-a-practical-guide-to-memory-buffers-and-control-flow-eaed2db1af3f",
+  },
+  {
+    title: "Cryptographic Vulnerabilities: When Strong Cryptography Fails",
+    description: "A look at cryptographic vulnerabilities and how strong cryptography can still fail in practice.",
+    label: "CRYPTOGRAPHY",
+    link: "https://medium.com/@molapomanuel709/cryptographic-vulnerabilities-when-strong-cryptography-fails-eb42bbe41a14",
+  },
 ];
 
 export const books: Book[] = [
@@ -123,12 +156,17 @@ export const books: Book[] = [
   {
     status: "IN DEVELOPMENT", title: "Binary Exploitation and Cryptography",
     description: "A security research book currently in development, exploring binary exploitation and cryptography.",
-    tags: ["Security Research"], note: "Subscription: $5.",
+    tags: ["Security Research"],
   },
   {
     status: "IN DEVELOPMENT", title: "How to Become a Bug Hunter",
     description: "A book currently in development on how to become a bug hunter, from the mindset to the methodology.",
     tags: ["Bug Bounty", "Methodology"],
+  },
+  {
+    status: "AVAILABLE ON 12 OCT", title: "The Mathematics Behind Cryptography",
+    description: "A security research book exploring the mathematics that underpins cryptography.",
+    tags: ["Cryptography", "Mathematics"],
   },
 ];
 

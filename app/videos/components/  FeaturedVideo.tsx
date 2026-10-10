@@ -33,7 +33,8 @@ export default function FeaturedVideo({ video }: { video: VideoItem }) {
         )}
 
         <p className="mt-5 font-mono text-[11px] text-slate-600">
-          {video.category} // PUBLISHED {formatDate(video.publishedAt)}
+          {video.category}
+          {video.publishedAt && ` // PUBLISHED ${formatDate(video.publishedAt)}`}
         </p>
         <div className="mt-auto pt-6">
           <ViewVideoButton url={video.videoUrl} large />
