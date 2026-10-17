@@ -6,7 +6,6 @@ import { profile, socials } from "../data";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
   { label: "Videos", href: "/videos" },
   { label: "Articles", href: "/articles" },
   { label: "Writeups", href: "/writeups" },
@@ -46,7 +45,7 @@ export function SocialLinks() {
   );
 }
 
-export default function Shell({ children }: { children: React.ReactNode }) {
+export default function Shell({ children, hideContact = false }: { children: React.ReactNode; hideContact?: boolean }) {
   const pathname = usePathname();
 
   return (
@@ -99,6 +98,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       <div className="mx-auto w-full max-w-[1800px] flex-1 space-y-12 px-6 py-10 lg:px-16 lg:py-14">
         {children}
 
+        {!hideContact && (
         <section id="contact">
           <div className="rounded-2xl border border-red-500/20 bg-black/80 p-8 text-center sm:p-12">
             <p className="font-mono text-xs tracking-[0.2em] text-red-500">LET&apos;S CONNECT</p>
@@ -111,6 +111,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             </div>
           </div>
         </section>
+        )}
       </div>
 
       <footer className="border-t border-white/[0.08] bg-black/80 py-6">

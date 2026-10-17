@@ -1,5 +1,7 @@
 import Shell from "../components/shell";
 import RoomCard from "./RoomCard";
+import RoomDivider from "./Roomdivider";
+import Writeup from "./writeup";
 import { TRYHACKME_PROFILE, rooms } from "./rooms";
 
 export default function TryHackMe() {
@@ -37,6 +39,10 @@ export default function TryHackMe() {
           ))}
         </div>
       </section>
+
+      <RoomDivider label="ROOM WRITEUP" />
+
+      <Writeup />
 
       <section className="rounded-2xl border border-red-500/20 bg-black/85 p-8 text-center sm:p-12">
         <p className="font-mono text-xs tracking-[0.3em] text-red-500">SHARING KNOWLEDGE</p>

@@ -54,7 +54,7 @@ export default function RoomCard({ room }: { room: Room }) {
           <span className="tracking-widest text-red-500">{room.id} // TRYHACKME</span>
           <span className="inline-flex items-center gap-2 rounded-full border border-red-500/30 px-3 py-1 text-[10px] tracking-wider text-red-500">
             <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
-            {live ? "LIVE" : "COMING SOON"}
+            {live ? "LIVE" : room.reviewStatus ?? "COMING SOON"}
           </span>
         </div>
         <h3 className="text-2xl font-bold leading-snug text-white">{room.title}</h3>

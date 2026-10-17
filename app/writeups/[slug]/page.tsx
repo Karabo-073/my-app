@@ -5,7 +5,7 @@ import Shell from "../../components/shell";
 import { Block, getWriteup, writeups } from "../writeupData";
 
 export function generateStaticParams() {
-  return writeups.map((w) => ({ slug: w.slug }));
+  return writeups.filter((w) => w.published).map((w) => ({ slug: w.slug }));
 }
 
 function Render({ b }: { b: Block }) {
@@ -38,13 +38,26 @@ function Render({ b }: { b: Block }) {
       );
     case "note":
       return <p className="mt-6 rounded-lg border border-red-500/30 bg-red-500/[0.06] p-4 text-sm leading-7 text-slate-300">{b.text}</p>;
+    case "link":
+      return (
+        <p className="mt-5">
+          <a
+            href={b.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg border border-red-500/30 bg-red-500/[0.06] px-5 py-3 font-mono text-sm text-red-400 transition hover:bg-red-500/[0.12]"
+          >
+            {b.label} <span aria-hidden="true">↗</span>
+          </a>
+        </p>
+      );
   }
 }
 
 export default async function WriteupPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const w = getWriteup(slug);
-  if (!w) notFound();
+  if (!w || !w.published) notFound();
 
   return (
     <Shell>

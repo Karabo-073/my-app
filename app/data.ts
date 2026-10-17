@@ -17,13 +17,14 @@ export const profile = {
 };
 
 export const stats: Stat[] = [
-  { value: "Top 1%", label: "TryHackMe Global" },
-  { value: "#14", label: "TryHackMe South Africa" },
-  { value: "100+", label: "CTFs Completed" },
-  { value: "13", label: "Professional Reports" },
-  { value: "7", label: "7 reports validated on Bugcrowd, HackerOne & YesWeHack" },
-  { value: "20", label: "Articles Published" },
-  { value: "10", label: "YouTube Videos" },
+  { value: "#2000", label: "TryHackMe Global Ranking" },
+  { value: "#14", label: "TryHackMe South Africa Ranking" },
+  { value: "100+", label: "CTF Challenges Completed" },
+  { value: "13", label: "Professional Security Reports" },
+  { value: "7", label: "Reports Validated on Bugcrowd, HackerOne & YesWeHack" },
+  { value: "20", label: "Technical Articles Published" },
+  { value: "5", label: "Research Blogs" },
+  { value: "10", label: "YouTube Research & Technical Videos" },
   { value: "5", label: "Bug Bounty Writeups" },
   { value: "2", label: "TryHackMe Rooms Created" },
   { value: "1", label: "CVE Pending" },
