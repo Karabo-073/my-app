@@ -96,54 +96,482 @@ export const writeups: Writeup[] = [
   { slug: "cve-placeholder-1", id: "CVE_01", section: "CVE", category: "COMING SOON", title: "", cardTitle: "Coming Soon", tags: ["CVE"], date: "", published: false, content: [] },
 
   // ───────────────────────── RESEARCH BLOG ─────────────────────────
+  
+  // ───────────────────────── RESEARCH BLOG ─────────────────────────
   {
-    slug: "bluetooth-hacking",
+    slug: "bluetooth-dos-research",
     id: "BLOG_01",
     section: "RESEARCH BLOG",
     category: "BLUETOOTH SECURITY",
-    title: "Bluetooth Hacking",
-    tags: ["Bluetooth", "Research", "Tool Analysis"],
-    date: "",
+    title: "Bluetooth Denial-of-Service Research Using BTStorm",
+    cardTitle: "Bluetooth DoS: Practical Investigation",
+    tags: ["Bluetooth", "DoS", "Kali Linux", "Security Research"],
+    date: "October 2026",
     published: true,
     content: [
-      { type: "note", text: "This article is a technical analysis of an existing open-source tool. It discusses concepts and the tool's intended techniques, not confirmed exploitation results against any specific device." },
-
-      { type: "h2", text: "Overview" },
-      { type: "p", text: "BTStorm is a Python-based Bluetooth denial-of-service (DoS) tool. It attempts to disrupt Bluetooth connections using L2ping flooding and device-disconnection techniques." },
-      { type: "link", href: "https://github.com/thakur2309/BTSTORM", label: "View the BTStorm repository on GitHub" },
-
-      { type: "h2", text: "How Bluetooth L2CAP Ping Works" },
-      { type: "p", text: "Bluetooth's Logical Link Control and Adaptation Protocol (L2CAP) includes an echo request and response mechanism, commonly referred to as l2ping. It is used to check whether a Bluetooth device is reachable, similar in concept to an ICMP ping on an IP network." },
-      { type: "p", text: "A flooding approach sends a high volume of these echo requests to a target device in a short period. If a device cannot process the volume of requests, its Bluetooth stack or active connections may become unresponsive, which is the basis of the denial-of-service technique BTStorm attempts to use." },
-
-      { type: "h2", text: "Examining the Tool" },
-      { type: "p", text: "At a conceptual level, BTStorm's approach involves identifying a target device over Bluetooth, then generating repeated L2CAP echo requests aimed at that device, alongside logic intended to force or encourage an existing connection to drop." },
-      { type: "p", text: "The tool's effectiveness depends heavily on the target device's Bluetooth chipset, firmware, operating system, distance, interference, and how that implementation handles a high volume of echo requests. Results are expected to vary significantly between devices, and some modern devices include protections against this kind of flooding." },
-
-      { type: "h2", text: "Research Focus" },
+      {
+        type: "note",
+        text: "Testing was performed against my own Huawei smartphone. This article documents the observed behaviour of the tested setup and does not claim that the technique affects every Bluetooth device."
+      },
+      {
+        type: "image",
+        src: "/writeups/DDOS%20attack%20on%20Bluetooth%20frontpage.png",
+        alt: "Bluetooth denial-of-service research",
+        caption: "Bluetooth security testing with Kali Linux"
+      },
+      { type: "h2", text: "Introduction" },
+      {
+        type: "p",
+        text: "Bluetooth is widely used for audio, file transfers, input devices, and communication between mobile devices. Although it provides convenient short-range connectivity, weaknesses in protocol implementations and connection handling can expose devices to availability attacks."
+      },
+      {
+        type: "p",
+        text: "In this investigation, I examined BTStorm, an open-source Python-based tool designed to attempt Bluetooth denial-of-service (DoS) attacks using techniques such as L2CAP echo-request flooding and connection disruption."
+      },
+      {
+        type: "link",
+        href: "https://github.com/thakur2309/BTSTORM",
+        label: "View the BTStorm repository on GitHub"
+      },
+      { type: "h2", text: "How Bluetooth DoS Works" },
+      {
+        type: "p",
+        text: "A denial-of-service attack attempts to make a service unavailable or unreliable. Bluetooth attacks may involve excessive requests, repeated connection attempts, or weaknesses in a device's Bluetooth protocol implementation."
+      },
+      {
+        type: "p",
+        text: "L2CAP, the Logical Link Control and Adaptation Protocol, supports communication mechanisms including echo requests and responses. A vulnerable implementation may handle excessive traffic poorly, although flooding does not automatically cause a device to disconnect or crash."
+      },
+      { type: "h2", text: "Research Environment" },
       {
         type: "list",
         items: [
-          "Understand how Bluetooth communication and L2CAP ping mechanisms work.",
-          "Examine the tool's implementation and identify the techniques it attempts to use.",
-          "Discuss Bluetooth availability risks and potential defensive measures.",
-          "Explain the limitations of the tool and the importance of testing only on authorized devices and isolated lab environments.",
-        ],
+          "Kali Linux running on my laptop.",
+          "BTStorm, an open-source Bluetooth testing tool.",
+          "My own Huawei smartphone as the test device.",
+          "Bluetooth discovery and service inspection utilities."
+        ]
       },
-
-      { type: "h2", text: "Defensive Considerations" },
-      { type: "p", text: "Bluetooth availability risks like this generally fall under denial-of-service rather than data compromise, but a disrupted connection can still have real consequences, for example on devices relied on for audio, input, or control. Devices and firmware that rate-limit or ignore excessive echo requests, and that fail safely when a connection drops unexpectedly, are more resilient to this class of technique." },
-
-      { type: "h2", text: "Limitations & Responsible Testing" },
-      { type: "p", text: "This article does not claim that BTStorm works against every device, and no specific test results are reported here. Any hands-on testing of tools like this should only be carried out against devices you own or are explicitly authorized to test, inside an isolated lab environment, never against devices or networks belonging to other people." },
+      {
+        type: "image",
+        src: "/writeups/Picture1.png",
+        alt: "BTStorm research screenshot",
+        caption: "Tool investigation"
+      },
+      {
+        type: "image",
+        src: "/writeups/Respiratory%20cloning.png",
+        alt: "BTStorm repository setup",
+        caption: "Repository setup and tool configuration"
+      },
+      { type: "h2", text: "Observations" },
+      {
+        type: "p",
+        text: "I inspected the tool and prepared the Bluetooth environment for testing. My laptop identified my Huawei phone during device discovery."
+      },
+      {
+        type: "image",
+        src: "/writeups/hciConfig%20command.png",
+        alt: "Bluetooth interface configuration",
+        caption: "Bluetooth interface inspection"
+      },
+      {
+        type: "image",
+        src: "/writeups/Phone%20discover.png",
+        alt: "Huawei phone discovered over Bluetooth",
+        caption: "My Huawei smartphone appeared during device discovery"
+      },
+      {
+        type: "p",
+        text: "After selecting my own device for the test, I observed a disruption in Bluetooth connectivity and was unable to connect to other devices as expected during the experiment. This was an observation from my particular test setup, not proof of a universal Bluetooth vulnerability."
+      },
+      {
+        type: "image",
+        src: "/writeups/DDOS%20attack.png",
+        alt: "Bluetooth testing results",
+        caption: "Observed Bluetooth connectivity disruption"
+      },
+      { type: "h2", text: "Limitations" },
+      {
+        type: "p",
+        text: "The observed disruption does not establish the precise cause, prove that the phone's Bluetooth stack crashed, or demonstrate that the same behaviour affects other models. Further controlled testing and diagnostic evidence would be needed to establish the underlying mechanism."
+      },
+      { type: "h2", text: "Defensive Measures" },
+      {
+        type: "list",
+        items: [
+          "Keep the operating system and Bluetooth firmware updated.",
+          "Disable Bluetooth when it is not needed.",
+          "Avoid accepting unexpected pairing requests.",
+          "Remove unknown paired devices.",
+          "Investigate unexpected connection failures and report reproducible implementation vulnerabilities to the relevant vendor."
+        ]
+      },
+      { type: "h2", text: "Conclusion" },
+      {
+        type: "p",
+        text: "This investigation explored Bluetooth availability risks and the behaviour of an existing open-source tool. The main lesson is that tool execution alone is not sufficient to establish a vulnerability: reliable security research requires reproducible evidence, analysis of the underlying cause, and clear documentation of limitations."
+      }
+    ]
+  },
+  {
+    slug: "wifi-security-research",
+    id: "BLOG_02",
+    section: "RESEARCH BLOG",
+    category: "WIRELESS SECURITY",
+    title: "Wi-Fi Security Research: WPA2 Handshake Capture and Password Assessment",
+    cardTitle: "Wi-Fi Security: WPA2 Handshake Analysis",
+    tags: ["Wi-Fi", "WPA2", "Aircrack-ng", "Wireless Research"],
+    date: "October 2026",
+    published: true,
+    content: [
+      {
+        type: "note",
+        text: "This experiment used my own Huawei mobile hotspot, my own client device, and my Kali Linux laptop. Password assessment was limited to my authorised lab."
+      },
+      {
+        type: "image",
+        src: "/writeups/Wifi%20image.png",
+        alt: "Wi-Fi security research",
+        caption: "Wireless security testing with Kali Linux"
+      },
+      { type: "h2", text: "Introduction" },
+      {
+        type: "p",
+        text: "Wi-Fi security depends on the authentication protocol, password strength, access point configuration, and the security of connected devices. This experiment explored wireless reconnaissance, traffic capture, WPA2 handshake observation, and password assessment in a controlled environment."
+      },
+      { type: "h2", text: "Research Objective" },
+      {
+        type: "p",
+        text: "The objective was to investigate how a nearby observer could collect wireless authentication traffic and assess whether a captured WPA2-Personal handshake could be matched against candidate passwords."
+      },
+      { type: "h2", text: "Lab Environment" },
+      {
+        type: "list",
+        items: [
+          "Kali Linux on my laptop.",
+          "The laptop's built-in wireless adapter.",
+          "My own Huawei smartphone configured as a hotspot.",
+          "A second device authorised to connect to the hotspot.",
+          "Aircrack-ng wireless analysis tools."
+        ]
+      },
+      { type: "h2", text: "Methodology and Observations" },
+      {
+        type: "p",
+        text: "I first identified my hotspot's BSSID, operating channel, and security configuration. This reconnaissance established which wireless network I was examining."
+      },
+      {
+        type: "image",
+        src: "/writeups/Discovery%20wifi.png",
+        alt: "Hotspot discovery",
+        caption: "Identifying the test hotspot"
+      },
+      {
+        type: "p",
+        text: "I prepared a candidate password wordlist for the authorised assessment. Wordlist-based testing checks whether a candidate matches the password used to derive the network's authentication keys; it does not automatically reveal every password."
+      },
+      {
+        type: "image",
+        src: "/writeups/Wordlist%20Creation.png",
+        alt: "Candidate wordlist creation",
+        caption: "Preparing candidate passwords"
+      },
+      {
+        type: "image",
+        src: "/writeups/Payloads%20wordlist.png",
+        alt: "Password assessment wordlist",
+        caption: "Candidate password list"
+      },
+      {
+        type: "p",
+        text: "Using Kali Linux and the Aircrack-ng suite, I monitored the wireless environment and observed authentication traffic associated with a client reconnection. A valid capture of the WPA2 four-way handshake can provide material for offline password verification."
+      },
+      {
+        type: "image",
+        src: "/writeups/Start%20wlan.png",
+        alt: "Wireless interface preparation",
+        caption: "Preparing the wireless interface"
+      },
+      {
+        type: "image",
+        src: "/writeups/Traffic%20Capture.png",
+        alt: "Wireless traffic capture",
+        caption: "Monitoring the authorised lab network"
+      },
+      {
+        type: "image",
+        src: "/writeups/Handshake.png",
+        alt: "WPA2 handshake observation",
+        caption: "Handshake capture observation"
+      },
+      { type: "h2", text: "Password Assessment" },
+      {
+        type: "p",
+        text: "I then assessed the captured authentication material against my candidate wordlist and identified a matching password for my own hotspot. This demonstrated that the tested password was present in the candidate set and could be verified using the captured material."
+      },
+      {
+        type: "image",
+        src: "/writeups/Passwordcracking.png",
+        alt: "Offline password assessment",
+        caption: "Password assessment in the authorised lab"
+      },
+      { type: "h2", text: "Technical Findings" },
+      {
+        type: "list",
+        items: [
+          "Wireless reconnaissance identified the test hotspot and its configuration.",
+          "The client reconnection provided an opportunity to observe WPA2 authentication traffic.",
+          "Offline candidate testing identified the hotspot password in the wordlist used.",
+          "The result illustrates the importance of using long, unique, unpredictable Wi-Fi passwords."
+        ]
+      },
+      { type: "h2", text: "Limitations" },
+      {
+        type: "p",
+        text: "The result applies to the password and devices used in this lab. It does not mean every WPA2 network can be compromised. Offline password assessment depends on obtaining suitable authentication material and having a candidate that matches the actual password."
+      },
+      { type: "h2", text: "Defensive Recommendations" },
+      {
+        type: "list",
+        items: [
+          "Use a long, unique, randomly generated Wi-Fi password.",
+          "Prefer WPA3-Personal where supported, or properly configured WPA2-AES.",
+          "Disable obsolete security modes such as WEP and avoid legacy compatibility settings where possible.",
+          "Keep router and client firmware updated.",
+          "Use a separate guest network for untrusted devices."
+        ]
+      },
+      { type: "h2", text: "Conclusion" },
+      {
+        type: "p",
+        text: "This authorised experiment demonstrated the relationship between wireless authentication traffic and offline password assessment. Strong credentials and modern wireless security settings substantially improve resistance to common password-guessing attacks."
+      }
+    ]
+  },
+  {
+    slug: "evil-twin-access-point-detection",
+    id: "BLOG_03",
+    section: "RESEARCH BLOG",
+    category: "EVIL TWIN SECURITY",
+    title: "Wi-Fi Access Point Detection on Android Using Kali Linux: A Preliminary Experiment",
+    cardTitle: "Evil Twin Threats: Android and Wi-Fi",
+    tags: ["Evil Twin", "Wi-Fi", "Android", "Wireless Research"],
+    date: "October 2026",
+    published: true,
+    content: [
+      {
+        type: "note",
+        text: "This was a preliminary experiment using a test access point that I created. It did not establish that a full Evil Twin attack succeeded."
+      },
+      {
+        type: "image",
+        src: "/writeups/Wifi%20image.png",
+        alt: "Wireless access point security research",
+        caption: "Investigating Wi-Fi access point behaviour"
+      },
+      { type: "h2", text: "Introduction" },
+      {
+        type: "p",
+        text: "An Evil Twin attack involves a rogue wireless access point that impersonates or resembles a legitimate Wi-Fi network. Depending on the configuration and user behaviour, such an attack may create opportunities for phishing, traffic manipulation, or other abuse."
+      },
+      {
+        type: "p",
+        text: "A matching network name alone does not prove that a phone will connect to a rogue access point, disclose credentials, or expose encrypted traffic. The outcome depends on authentication, device behaviour, and other security controls."
+      },
+      { type: "h2", text: "Research Objective" },
+      {
+        type: "p",
+        text: "I wanted to verify that my Kali Linux wireless adapter could create a test access point and observe whether my Huawei Android phone detected it."
+      },
+      { type: "h2", text: "Lab Environment" },
+      {
+        type: "list",
+        items: [
+          "Kali Linux laptop.",
+          "Built-in wireless adapter identified as wlan0.",
+          "NetworkManager and nmcli.",
+          "My Huawei Android smartphone.",
+          "A test access point named VantaRoot-Lab."
+        ]
+      },
+      { type: "h2", text: "Methodology" },
+      {
+        type: "p",
+        text: "I inspected the wireless interfaces and supported operating modes to determine whether the adapter could operate as an access point."
+      },
+      {
+        type: "image",
+        src: "/writeups/device%20status.png",
+        alt: "Wireless adapter status",
+        caption: "Inspecting wireless adapter capabilities"
+      },
+      {
+        type: "p",
+        text: "I then configured a test hotspot named VantaRoot-Lab using NetworkManager. This established a controlled wireless environment for observing the phone's behaviour."
+      },
+      {
+        type: "image",
+        src: "/writeups/wifi%20properties.png",
+        alt: "Test Wi-Fi access point properties",
+        caption: "Configuring the test access point"
+      },
+      {
+        type: "p",
+        text: "I opened the Wi-Fi settings on my Huawei smartphone and observed the list of available networks."
+      },
+      {
+        type: "image",
+        src: "/writeups/Visible%20network.png",
+        alt: "Test network visible on Android",
+        caption: "The phone detected VantaRoot-Lab"
+      },
+      { type: "h2", text: "Findings" },
+      {
+        type: "list",
+        items: [
+          "The wireless adapter supported the access point configuration used in the experiment.",
+          "The Huawei phone detected the test network.",
+          "No obvious warning appeared when the network was displayed in the available networks list."
+        ]
+      },
+      {
+        type: "p",
+        text: "The absence of a visible warning does not mean that Android failed to detect a confirmed Evil Twin. It only records the phone's observed behaviour when the test access point was available."
+      },
+      { type: "h2", text: "Limitations" },
+      {
+        type: "list",
+        items: [
+          "Only one test access point was created.",
+          "A simultaneous duplicate-SSID scenario was not tested.",
+          "Credential collection and traffic interception were not tested.",
+          "The experiment did not establish a bypass of Android security controls.",
+          "Results were not compared across Android versions or device manufacturers."
+        ]
+      },
+      { type: "h2", text: "Defensive Measures" },
+      {
+        type: "list",
+        items: [
+          "Verify public Wi-Fi connection details with the network owner.",
+          "Disable automatic connection to untrusted networks.",
+          "Check website security indicators and never ignore certificate warnings.",
+          "Be cautious of unexpected captive portals requesting account credentials.",
+          "Use strong wireless authentication and monitor for unauthorised access points in managed environments."
+        ]
+      },
+      { type: "h2", text: "Conclusion" },
+      {
+        type: "p",
+        text: "This preliminary experiment established that my adapter could create a test access point and that my phone could detect it. A genuine Evil Twin assessment would require a controlled comparison between legitimate and impersonating access points, with documented connection behaviour and clear limits on what was tested."
+      }
+    ]
+  },
+  {
+    slug: "nfc-security-explained",
+    id: "BLOG_04",
+    section: "RESEARCH BLOG",
+    category: "NFC SECURITY",
+    title: "NFC Security Explained: From the Basics to Real-World Attacks",
+    cardTitle: "NFC Security: Protocols, Attacks and Defences",
+    tags: ["NFC", "Cryptography", "Mobile Security", "IoT"],
+    date: "October 2026",
+    published: true,
+    content: [
+      {
+        type: "note",
+        text: "This is a technical overview of NFC security concepts and known attack classes, not a claim that payment cards or access-control systems were experimentally compromised."
+      },
+      { type: "h2", text: "What Is NFC?" },
+      {
+        type: "p",
+        text: "Near Field Communication (NFC) is a short-range wireless technology commonly used in contactless payments, access cards, public transport, and communication between compatible devices. It commonly operates at 13.56 MHz."
+      },
+      {
+        type: "p",
+        text: "NFC describes a communication method, not a complete security system. Security depends on the tag or card technology, authentication protocol, cryptographic implementation, reader, and connected application."
+      },
+      { type: "h2", text: "How NFC Works" },
+      {
+        type: "p",
+        text: "In a common interaction, a reader communicates with a nearby tag or card. Depending on the technology, the card may expose stored data, return an identifier, or perform a cryptographic authentication operation. The reader or backend system then decides what action to allow."
+      },
+      { type: "h2", text: "Common NFC Security Risks" },
+      {
+        type: "list",
+        items: [
+          "Weak authentication: a system trusts a public identifier instead of verifying a legitimate cryptographic response.",
+          "Replay attacks: a system accepts previously captured messages instead of requiring fresh authentication.",
+          "Relay attacks: communications between legitimate devices are forwarded to defeat expected proximity.",
+          "Insecure tags: writable tags redirect users to unexpected or malicious websites.",
+          "Poor key management: exposed, weak, or shared cryptographic keys undermine otherwise sound designs."
+        ]
+      },
+      { type: "h2", text: "Cloning, Replay and Relay" },
+      {
+        type: "p",
+        text: "Some basic tags contain data that can be copied, and certain legacy access technologies have known cloning weaknesses. Copying tag contents does not necessarily reproduce cryptographic credentials, so modern protected cards cannot generally be cloned simply by reading their data."
+      },
+      {
+        type: "p",
+        text: "A replay attack attempts to reuse a previously recorded message. Well-designed protocols use fresh challenges, counters, or other protections to reject stale authentication exchanges."
+      },
+      {
+        type: "p",
+        text: "A relay attack forwards live messages between a legitimate card and a reader. Unlike cloning, it may use the genuine device without extracting its secret key. Effective protection depends on the protocol and the system's ability to verify proximity and transaction legitimacy."
+      },
+      { type: "h2", text: "Tools for NFC Research" },
+      {
+        type: "list",
+        items: [
+          "NFC Tools: inspect and write supported NFC tags.",
+          "Proxmark3: analyse supported RFID and NFC technologies and investigate certain protocol weaknesses.",
+          "Flipper Zero: explore supported tags and compatible NFC technologies.",
+          "NFCGate: study NFC communication and relay behaviour on compatible Android devices."
+        ]
+      },
+      {
+        type: "p",
+        text: "These tools have different hardware and protocol capabilities. Their presence does not mean every payment card, access badge, or phone can be read, copied, or emulated."
+      },
+      { type: "h2", text: "A Safe Practical Research Path" },
+      {
+        type: "list",
+        items: [
+          "Start with a blank NFC tag you own.",
+          "Read its publicly accessible contents with a compatible phone.",
+          "Write a harmless test URL to a writable tag and read it back.",
+          "Compare the stored data with what your phone displays.",
+          "Document the tag type, test conditions, results, and limitations."
+        ]
+      },
+      { type: "h2", text: "Defensive Recommendations" },
+      {
+        type: "list",
+        items: [
+          "Use cryptographic authentication rather than trusting identifiers alone.",
+          "Implement replay protection with fresh challenges or counters.",
+          "Protect cryptographic keys and apply sound key-management practices.",
+          "Use appropriate device and account verification when provisioning payment credentials.",
+          "Monitor suspicious transactions and keep devices and applications updated.",
+          "Inspect unexpected NFC links before opening them."
+        ]
+      },
+      {
+        type: "h2",
+        text: "Conclusion",
+      },
+      {
+        type: "p",
+        text: "NFC security cannot be judged by communication range alone. Effective research examines the complete system, including the card, reader, authentication protocol, application, and backend. The goal is to establish whether the system verifies identity, prevents replay and relay abuse, protects sensitive data, and rejects unauthorised operations.",
+      },
     ],
   },
-  // Four empty placeholder cards — fill in slug/title/content and set published: true when ready.
-  { slug: "research-blog-placeholder-2", id: "BLOG_02", section: "RESEARCH BLOG", category: "COMING SOON", title: "", cardTitle: "Coming Soon", tags: ["Research Blog"], date: "", published: false, content: [] },
-  { slug: "research-blog-placeholder-3", id: "BLOG_03", section: "RESEARCH BLOG", category: "COMING SOON", title: "", cardTitle: "Coming Soon", tags: ["Research Blog"], date: "", published: false, content: [] },
-  { slug: "research-blog-placeholder-4", id: "BLOG_04", section: "RESEARCH BLOG", category: "COMING SOON", title: "", cardTitle: "Coming Soon", tags: ["Research Blog"], date: "", published: false, content: [] },
-  { slug: "research-blog-placeholder-5", id: "BLOG_05", section: "RESEARCH BLOG", category: "COMING SOON", title: "", cardTitle: "Coming Soon", tags: ["Research Blog"], date: "", published: false, content: [] },
 ];
 
-export const getWriteup = (slug: string) => writeups.find((w) => w.slug === slug);
-export const bySection = (s: Section) => writeups.filter((w) => w.section === s);
+export const getWriteup = (slug: string) =>
+  writeups.find((w) => w.slug === slug);
+
+export const bySection = (s: Section) =>
+  writeups.filter((w) => w.section === s);
